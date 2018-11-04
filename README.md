@@ -68,18 +68,4 @@ iisexpress.exe" /site:WebSite2
 http://yourhost:port/knockout
 ```
 
-
-
-From **users-app** install packages first:
-
-```
-npm install
-```
-
-and run the application:
-
-```
-ng serve --open
-```
-
 Good luck
