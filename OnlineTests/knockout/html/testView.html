@@ -1,0 +1,86 @@
+<div id="divTests">
+    <h2>Tests</h2>
+    <input type="button" data-bind="click:viewAll,visible:currentContext()=='home'" class="btn btn-link" value="All Tests" />
+
+
+    <!-- View All Section -->
+        <div data-bind="visible:currentContext()=='all'" class="row">
+            <div class="col-sm-6">
+                <input type="button" class="btn btn-link" value="Home" 
+				data-bind="click:goHome,visible:isLoaded()" />
+
+                    <div id="ListMenu">
+                    <ul data-bind="foreach:tests">
+                        <li>
+                            <a data-bind="text:TestName,click:$parent.openDetails" href="#"></a>
+                            <input type="button" data-bind="click:$parent.openDeleteDialog" value="Delete" class="btn btn-warning" data-toggle="modal" data-target="#ModalDelete" />
+                        </li>
+                    </ul>
+                </div>
+
+        <!--Loader -->
+            <div id="divLoader">
+                <img src="img/loading.gif" />
+            </div>
+
+            </div>
+
+            <div class="col-sm-6 alignContents">
+
+                    <div class="panel panel-info panel-trim">
+                        <div class="panel-header"><span>New Test: </span></div>
+                <div class="panel-body" data-bind="with:testToAdd">
+                    <span>GUID: </span>
+                    <input type="text" data-bind="value:GUID,valueUpdate: 'afterkeydown',event: { keyup: $parent.AddTestOnkeyDown }" /><br />
+                    <span>TestName: </span>
+                    <input type="text" data-bind="value:TestName,valueUpdate: 'afterkeydown',event: { keyup: $parent.AddTestOnkeyDown }" /><br />
+                    <input type="button" value="Add" class="btn btn-info" data-bind="click:$parent.AddTest,enable:$parent.EnableButtonAdd" />
+            </div>
+                </div>
+
+            </div>
+
+
+             <!-- Modal -->
+    <div class="modal fade" id="ModalDelete" role="dialog">
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content" data-bind="with:selectedTest">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Test</h4>
+            </div>
+            <div class="modal-body">
+            <p>Are you sure?</p><br />
+            <span>Test GUID: </span><span data-bind="text:GUID"></span> <br />
+            <span>Test Name: </span><span data-bind="text:TestName"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click:$parent.Delete">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+        
+        </div>
+        </div> <!-- modal -->
+
+        </div> <!-- row -->
+
+
+        <!-- Details Section -->
+        <div data-bind="visible:currentContext()=='details'">
+            <input type="button" class="btn btn-link" value="Home" data-bind="click:goHome" />
+            <input type="button" class="btn btn-link" value="Back to List" data-bind="click:viewAll" />
+            
+            <div data-bind="with:selectedTest">
+                <input type="text" data-bind="value:GUID,valueUpdate: 'afterkeydown',event: { keyup: $parent.UpdateTestOnKeyDown }"></input><br />
+                <input id="txtEdit" type="text" data-bind="value:TestName,valueUpdate: 'afterkeydown',event: { keyup: $parent.UpdateTestOnKeyDown }">
+                <input type="button" class="btn btn-info" value="Update" data-bind="click:$parent.Update,enable:$parent.EnableButtonUpdate" />
+            </div>
+
+        </div>
+
+
+    <script src="scripts/TestViewModel.js"></script>
+</div>

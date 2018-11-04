@@ -1,0 +1,75 @@
+<div id="divCustomer">
+<h2>Customers</h2>
+    <input type="button" data-bind="click:viewAll,visible:currentContext()=='home'" class="btn btn-link" value="View All"/>
+
+<!-- View All Section -->
+        <div data-bind="visible:currentContext()=='all'" class="row">
+        
+      <div class="col-sm-6">
+            <input type="button" class="btn btn-link" value="Home" 
+			data-bind="click:goHome,visible:isLoaded()" />
+
+            <div id="ListMenu">
+                <ul data-bind="foreach:customers">
+                    <li>
+                        <a data-bind="text:name,click:$parent.openDetails" href="#"></a>
+                        <input type="button" data-bind="click:$parent.openDeleteDialog" value="Delete" class="btn btn-warning" data-toggle="modal" data-target="#ModalDelete" />
+                    </li>
+                </ul>
+            </div>
+      </div>
+       
+        <div class="col-sm-6 alignContents">
+            <div class="panel panel-info panel-trim">
+            <div class="panel-body">
+                <span>New Customer: </span>
+                <input id="txtAdd" type="text" data-bind="value:customerToAdd,valueUpdate: 'afterkeydown', event: { keyup: AddCustomerOnkeyDown }" />
+                <input type="button" value="Add" class="btn btn-info" data-bind="enable:EnableButtonAdd,click:AddCustomer" />
+        </div>
+            </div>
+        </div>
+       
+   
+   <!-- Modal -->
+  <div class="modal fade" id="ModalDelete" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" data-bind="with:selectedCustomer">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Customer</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p><br />
+          <span>Customer ID: </span><span data-bind="text:id"></span> <br />
+          <span>Customer Name: </span><span data-bind="text:name"></span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click:$parent.Delete">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+	</div> <!-- modal -->
+        
+
+
+        </div>  <!-- row -->
+
+        <!-- Details Section -->
+        <div data-bind="visible:currentContext()=='details'">
+            <input type="button" class="btn btn-link" value="Home" data-bind="click:goHome" />
+            <input type="button" class="btn btn-link" value="Back to List" data-bind="click:viewAll" />
+            
+            <div data-bind="with:selectedCustomer">
+                <h1 data-bind="text:id"></h1><br />
+                <input id="txtEdit" type="text" data-bind="value:name">
+                <input type="button" class="btn btn-info" value="Update" data-bind="click:$parent.Update" />
+            </div>
+
+        </div>
+
+        <script src="scripts/CustomerViewModel.js"></script>
+        </div>

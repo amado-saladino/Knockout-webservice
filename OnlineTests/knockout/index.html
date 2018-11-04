@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <link rel="stylesheet" href="styles/list.css">
+  <link rel="stylesheet" href="styles/align.css">
+  <title>SPA</title>
+  
+  
+</head>
+<body>
+<div class="container">
+    <h1>Customer Management System</h1>   
+
+<div class="alert alert-success" id="success-alert">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <strong>Success! </strong>
+</div>
+
+            <!-- Home Section  -->  
+        <div data-bind="visible:currentContext()=='home'">    
+            <input id="btnCustomers" type="button" class="btn btn-link" value="Customers"/>
+            <input id="btnTests" type="button" class="btn btn-link" value="Tests" />
+        </div>
+          
+          <div id="divLoad">
+        <!-- contents will appear in this div -->
+        </div>
+    <br /> 
+    
+</div> <!-- container -->
+
+       
+
+</body>
+</html>
